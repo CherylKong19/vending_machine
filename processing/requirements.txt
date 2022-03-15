@@ -1,0 +1,7 @@
+connexion
+swagger-ui-bundle
+sqlalchemy
+apscheduler-bundle
+requests
+apscheduler
+flask-cors

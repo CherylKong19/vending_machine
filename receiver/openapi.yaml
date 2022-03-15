@@ -1,0 +1,101 @@
+openapi: 3.0.0
+servers: []
+info:
+  description: This is API receives transactions from vending machines
+  version: "1.0.0"
+  title: Vending Machine API
+  contact:
+    email: <email>
+tags:
+  - name: machines
+    description: Transactions available to vending machines
+paths:
+  /transaction/sanitizer:
+    post:
+      tags:
+        - machines
+      summary: hand sanitizer transactions
+      operationId: app.sanitizer_transaction
+      description: Adds a new hand sanitizer transaction to the system
+      responses:
+        '201':
+          description: item created
+        '400':
+          description: 'invalid input, object invalid'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sanitizer_transaction'
+        description: transaction item to add
+  /transaction/mask:
+    post:
+      tags:
+        - machines
+      summary: mask transactions
+      operationId: app.mask_transaction
+      description: Adds a new mask transaction to the system
+      responses:
+        '201':
+          description: item created
+        '400':
+          description: 'invalid input, object invalid'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/mask_transaction'
+        description: transaction item to add
+components:
+    schemas:
+      sanitizer_transaction:
+        required:
+          - transaction_id
+          - scent
+          - volume
+          - quantity
+          - price
+        properties: 
+          transaction_id: 
+            type: string 
+            format: uuid 
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851 
+          scent: 
+            type: string 
+            example: 'peppermint'  
+          volume: 
+            type: integer 
+            example: 100 
+          quantity: 
+            type: integer 
+            example: 1
+          price:
+            type: integer
+            example: 5
+        type: object
+      
+      mask_transaction:
+        required:
+          - transaction_id
+          - color
+          - size
+          - quantity
+          - price
+        properties: 
+          transaction_id: 
+            type: string 
+            format: uuid 
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851 
+          color: 
+            type: string 
+            example: 'blue' 
+          size: 
+            type: string 
+            example: 'adult' 
+          quantity: 
+            type: integer 
+            example: 1
+          price:
+            type: integer
+            example: 2
+        type: object

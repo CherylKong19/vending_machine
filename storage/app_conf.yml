@@ -1,0 +1,11 @@
+version: 1 
+datastore: 
+  user: <db_user> 
+  password: <db_password>
+  hostname: <host>
+  port: 3306 
+  db: <db>
+events: 
+  hostname: <host>
+  port: 9092 
+  topic: <db>

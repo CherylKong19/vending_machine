@@ -1,0 +1,9 @@
+version: 1 
+datastore: 
+  filename: stats.sqlite 
+scheduler: 
+  period_sec: 5 
+mask: 
+  url: <event_url>
+sanitizer: 
+  url: <event_url>

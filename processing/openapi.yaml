@@ -1,0 +1,55 @@
+openapi: 3.0.0 
+info: 
+  description: This API provides event stats 
+  version: "1.0.0" 
+  title: Vending Machine Stats API 
+  contact: 
+    email: <email>
+ 
+paths: 
+  /stats: 
+    get: 
+      summary: Gets the event stats 
+      operationId: app.get_stats 
+      description: Gets Mask and Saanitizer Transactions processsed statistics 
+      responses: 
+        '200': 
+          description: Successfully returned a list of blood pressure events 
+          content: 
+            application/json: 
+              schema: 
+                type: object 
+                items: 
+                  $ref: '#/components/schemas/ReadingStats' 
+        '400': 
+          description: Invalid request 
+          content: 
+            application/json: 
+              schema: 
+                type: object 
+                properties: 
+                  message: 
+                    type: string 
+ 
+components: 
+  schemas: 
+    ReadingStats: 
+      required: 
+      - sanitizer_quantity 
+      - sanitizer_price 
+      - mask_quantity 
+      - mask_price 
+      properties: 
+        sanitizer_quantity: 
+          type: integer 
+          example: 50 
+        sanitizer_price: 
+          type: integer 
+          example: 200 
+        mask_quantity: 
+          type: integer 
+          example: 18 
+        mask_price: 
+          type: integer 
+          example: 50
+      type: object

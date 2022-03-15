@@ -1,0 +1,143 @@
+openapi: 3.0.0
+servers: []
+info:
+  description: This is API receives transactions from vending machines
+  version: "1.0.0"
+  title: Vending Machine API
+  contact:
+    email: <email>
+tags:
+  - name: machines
+    description: Transactions available to vending machines
+paths:
+  /transaction/sanitizer:
+    get:
+      tags:
+        - machines
+      summary: get hand sanitizer transactions
+      operationId: app.get_sanitizer
+      description: get hand sanitizer transaction after a new transaction
+      parameters:
+        - name: timestamp
+          in: query
+          description: limits the number of item on page
+          schema:
+            type: string
+            #format: date-time
+            example: '2022-02-10T15:06:55.424072Z' 
+      responses:
+        '200':
+          description: Successfully returned a list of blood pressure event
+          content:
+            application/json:
+              schema:
+                type: 
+                  array
+                items:
+                  $ref: '#/components/schemas/sanitizer_transaction'
+        '400':
+          description: 'invalid request'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /transaction/mask:
+    get:
+      tags:
+        - machines
+      summary: get mask transactions
+      operationId: app.get_mask
+      description: get mask transaction after a new transaction
+      parameters:
+        - name: timestamp
+          in: query
+          description: limits the number of item on page
+          schema:
+            type: string
+            #format: date-time
+            example: '2022-02-10T15:06:55.424072Z' 
+      responses:
+        '200':
+          description: Successfully returned a list of blood pressure event
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/mask_transaction'
+        '400':
+          description: 'invalid request'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+components:
+    schemas:
+      sanitizer_transaction:
+        required:
+          - transaction_id
+          - scent
+          - volume
+          - quantity
+          - price
+          - trace_id
+        properties: 
+          transaction_id: 
+            type: string 
+            format: uuid 
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851 
+          scent: 
+            type: string 
+            example: 'peppermint'  
+          volume: 
+            type: integer 
+            example: 100 
+          quantity: 
+            type: integer 
+            example: 1
+          price:
+            type: integer
+            example: 5
+          trace_id: 
+            type: string 
+            format: uuid 
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+          
+        type: object
+      
+      mask_transaction:
+        required:
+          - transaction_id
+          - color
+          - size
+          - quantity
+          - price
+          - trace_id
+        properties: 
+          transaction_id: 
+            type: string 
+            format: uuid 
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851 
+          color: 
+            type: string 
+            example: 'blue' 
+          size: 
+            type: string 
+            example: 'adult' 
+          quantity: 
+            type: integer 
+            example: 1
+          price:
+            type: integer
+            example: 2
+          trace_id: 
+            type: string 
+            format: uuid 
+            example: d290f1ee-6c54-4b01-90e6-d701748f0851
+        type: object
