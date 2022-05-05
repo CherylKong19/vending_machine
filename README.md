@@ -28,3 +28,6 @@ The transactions are stored to allow the following:
 
 ### To stop and remove containers, 
 1. Run command `docker-compose down`
+
+### Jenkins shared library
+- [Jenkins Repo](https://github.com/CherylKong19/ass3_ci_functions)
